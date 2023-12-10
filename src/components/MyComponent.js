@@ -21,11 +21,25 @@ import React from "react";
     handleOnmouseOver(event){
         console.log(event);
     }
+    handleOnChange(event){
+        this.setState({
+            name: event.target.value
+        })
+        // console.log(event.target.value);
+    }
+    handleonSubmit(event){
+        event.preventDefault();      
+          console.log(this.state);
+    }
     render(){
         return (
             <div>My name is {this.state.name} and i am  {this.state.age}
-            <button onClick={(event)=>{this.handleClick(event)}}>Click me</button>
-            <button onMouseOver={this.handleOnmouseOver}>on mouse me</button>
+            <form onSubmit={(event)=>this.handleonSubmit(event)}>
+                <input type='text'
+                onChange={(event)=>this.handleOnChange(event)}
+                />
+                <button>Submit</button>
+            </form>
             </div>
         );
     }
