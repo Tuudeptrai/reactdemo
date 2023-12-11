@@ -16,12 +16,18 @@ import DisplayInfor from "./DisplayInfor";
         listUsers: [userObject, ...this.state.listUsers]
     })
    }
+   handleDelnewUser = (userId)=>{
+    this.setState({
+        listUsers: [...this.state.listUsers].filter(item => item.id !==userId)
+    })
+   }
     render(){
         return (
            <>
             <AddUserInfor handleAddnewUser={this.handleAddnewUser}/>
             <hr/>
             <DisplayInfor listUsers={this.state.listUsers}
+            handleDelnewUser={this.handleDelnewUser}
             />
            </>
         );
