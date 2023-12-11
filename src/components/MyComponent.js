@@ -18,12 +18,12 @@ import DisplayInfor from "./DisplayInfor";
    }
     render(){
         return (
-           <div>
+           <>
             <AddUserInfor handleAddnewUser={this.handleAddnewUser}/>
             <hr/>
             <DisplayInfor listUsers={this.state.listUsers}
             />
-           </div>
+           </>
         );
     }
 }
