@@ -1,4 +1,5 @@
 import React from "react";
+import './DisplayInfor.scss';
 
 class DisplayInfor extends React.Component{
 
@@ -19,8 +20,9 @@ class DisplayInfor extends React.Component{
         const {listUsers} = this.props;
 
         return (
-            <div>
-                <div><span className="green" onClick={()=>{this.handleShowHide()}}>{this.state.isShowListUser===true?"hide user list":"show user list"}</span></div>
+            <div className="display-infor-container">
+                <div><span className="blue" onClick={()=>{this.handleShowHide()}}>{this.state.isShowListUser===true?"hide user list":"show user list"}</span></div>
+                <hr/>
                 {this.state.isShowListUser &&
                 <div>
                     { listUsers.map((user)=>{
