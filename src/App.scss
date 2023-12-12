@@ -67,6 +67,7 @@ body {
     }
   
     .title-three {
+      button{
         border-radius: 5px !important;
         border: solid 1px #303030 !important;
         background-color: #303030 !important;
@@ -77,6 +78,8 @@ body {
         &:hover {
           background-color: black !important;
         }
+      }
+        
     }
   }
   

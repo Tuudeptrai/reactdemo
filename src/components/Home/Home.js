@@ -11,8 +11,8 @@ const Home = (props) => {
                     <div className="title-1">There is the test quiz</div>
                     <div className="title-two">Get more data—like signups, feedback, and <br/>
                     anything else—with forms<br/> designed to be refreshingly different.</div>
-                    <div>
-                        <button className="title-three">Get started. it's free</button>
+                    <div className="title-three">
+                        <button >Get started. it's free</button>
                     </div>
                 </div>
             </div>
