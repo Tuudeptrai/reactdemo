@@ -9,12 +9,13 @@ import {
     SidebarContent,
 } from 'react-pro-sidebar';
 
-import { FaTachometerAlt, FaGem, FaList, FaGithub, FaRegLaughWink, FaHeart } from 'react-icons/fa';
+import { FaTachometerAlt, FaGem, FaFacebook ,  FaReact  } from 'react-icons/fa';
 import sidebarBg from '../../assets/bg2.jpg';
-
+import './SideBar.scss'
+import { Link } from 'react-router-dom';
 
 const SideBar = (props) => {
-    const { image, collapsed, toggled, handleToggleSidebar } = props;
+    const {  collapsed, toggled, handleToggleSidebar } = props;
     return (
         <>
             <ProSidebar
@@ -37,7 +38,7 @@ const SideBar = (props) => {
                             whiteSpace: 'nowrap',
                         }}
                     >
-                        Admin Tuu Web
+                       <FaReact size={'3em'} color='00bfff'/> Admin Tuu Web
                     </div>
                 </SidebarHeader>
 
@@ -45,20 +46,20 @@ const SideBar = (props) => {
                     <Menu iconShape="circle">
                         <MenuItem
                             icon={<FaTachometerAlt />}
-                            suffix={<span className="badge red">New</span>}
                         >
-                            dashboard
+                            
+                            <Link to="/admins">dashboard</Link>
                         </MenuItem>
-                        <MenuItem icon={<FaGem />}> components </MenuItem>
+                        
                     </Menu>
                     <Menu iconShape="circle">
                         <SubMenu
-                            suffix={<span className="badge yellow">3</span>}
-                            icon={<FaRegLaughWink />}
+                            icon={<FaGem />}
+                            title='Feature'
                         >
-                            <MenuItem> 1</MenuItem>
-                            <MenuItem> 2</MenuItem>
-                            <MenuItem> 3</MenuItem>
+                            <MenuItem>  <Link to="/admins/manage-users">quản lý users</Link></MenuItem>
+                            <MenuItem> quản lý bài quiz</MenuItem>
+                            <MenuItem> quản lý câu hỏi</MenuItem>
                         </SubMenu>
 
                     </Menu>
@@ -72,14 +73,14 @@ const SideBar = (props) => {
                         }}
                     >
                         <a
-                            href="https://github.com/azouaoui-med/react-pro-sidebar"
+                            href="https://facebook.com/tuuvuvan"
                             target="_blank"
                             className="sidebar-btn"
                             rel="noopener noreferrer"
                         >
-                            <FaGithub />
+                            <FaFacebook  />
                             <span style={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>
-                                viewSource
+                                tuu dep trai
                             </span>
                         </a>
                     </div>
