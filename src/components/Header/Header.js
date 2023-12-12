@@ -2,7 +2,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import { Link ,NavLink} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 
 const Header = () => {
   return (
@@ -18,9 +18,9 @@ const Header = () => {
           <NavLink  className="nav-link" to="/admins">Admin</NavLink>
           </Nav>
           <Nav>
+            <button className='btn-login'>Log in</button>
+            <button className='btn-singup'>Sign up</button>
             <NavDropdown title="Setting" id="basic-nav-dropdown">
-                <NavDropdown.Item >Login</NavDropdown.Item>
-                <NavDropdown.Item >Logout</NavDropdown.Item>
                 <NavDropdown.Item >Profile</NavDropdown.Item>
             </NavDropdown>
           </Nav>
