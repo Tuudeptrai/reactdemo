@@ -61,37 +61,39 @@ import logo from '../logo.svg';
 //         )
 //     }
 // }
-const DisplayInfor = (props)=>{
-    
-                console.log("alo render ")
-                
-                const {listUsers} = props;
-        
-                const [isShowListUser, setShowListUser] = useState(true);//isShowListUser:true
-                
-                const handleShowHide= ()=>{
-                    setShowListUser(!isShowListUser)
-                 }
-                return (
-                    <div className="display-infor-container">
-                        <div>
-                            <span className="blue" onClick={()=>handleShowHide()}>{isShowListUser===true?"hide user list":"show user list"}</span>
-                        </div>
-                        {isShowListUser &&
-                        <>
-                            { listUsers.map((user)=>{
-                                    return (
-                                        <div key={user.id} className={+user.age > 18?"green":"red"}>
-                                            <p>My name is {user.name}</p>
-                                            <p>My age is {user.age}</p>
-                                            <button onClick={()=>{props.handleDelnewUser(user.id)}}>Delete</button>
-                                            <hr/>
-                                        </div>
-                                    )
-                            })}
-                        </>
-                         }
-                    </div>
-                )
-}
-export default DisplayInfor;
+const DisplayInfor = (props) => {
+    const { listUsers } = props;
+  
+    const [isShowListUser, setShowListUser] = useState(true);
+  
+    const handleShowHide = () => {
+      setShowListUser(!isShowListUser);
+    };
+  
+    return (
+      <div className="display-infor-container">
+        <div>
+          <span className="blue" onClick={() => handleShowHide()}>
+            {isShowListUser === true ? "hide user list" : "show user list"}
+          </span>
+        </div>
+        {isShowListUser && (
+          <>
+            {listUsers.map((user) => {
+              return (
+                <div key={user.id} className={+user.age > 18 ? "green" : "red"}>
+                  <p>My name is {user.name}</p>
+                  <p>My age is {user.age}</p>
+                  <button onClick={() => { props.handleDelUser(user.id) }}>Delete</button>
+                  <hr />
+                </div>
+              );
+            })}
+          </>
+        )}
+      </div>
+    );
+  };
+  
+  export default DisplayInfor;
+  
