@@ -4,6 +4,13 @@ import logo from '../logo.svg';
 
 class DisplayInfor extends React.Component{
 
+    constructor(props){
+        console.log("alo constructor ")
+        super(props);
+        this.state = {
+            isShowListUser: true
+        }
+    }
     state = {
         isShowListUser: true
     }
@@ -14,15 +21,26 @@ class DisplayInfor extends React.Component{
         })
     }
 
+    componentDidMount(){
+        console.log("alo componentDidMount ")
+        setTimeout(()=>{
+            document.title = "componentDidMount"
+        },300)
+       
+    }
+
+    componentDidUpdate(prevProps, prevState){
+        document.title = "componentDidUpdate"
+        console.log("alo componentDidUpdate ")
+    }
     render(){
 
-        console.log(this.props)
+        console.log("alo render ")
         
         const {listUsers} = this.props;
 
         return (
             <div className="display-infor-container">
-                {/* <img src={logo}/> */}
                 <div><span className="blue" onClick={()=>{this.handleShowHide()}}>{this.state.isShowListUser===true?"hide user list":"show user list"}</span></div>
                 <hr/>
                 {this.state.isShowListUser &&
