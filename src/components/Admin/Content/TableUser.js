@@ -1,22 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { getAllUser } from "../../../services/apiSevice";
+
 
 const TableUser = (props) => {
 
    
 
-    const [listUsers, setListUsers] = useState([]);
-    const fetchListUser =async()=>{
-        let res = await getAllUser();
-        // console.log(res)
-        if(res.EC ===0){
-            setListUsers(res.DT)
-        }
-    }
-    useEffect(()=>{
-        fetchListUser();
-    },[]);
+    const {listUsers} = props;
+   
 
     return (
         <>

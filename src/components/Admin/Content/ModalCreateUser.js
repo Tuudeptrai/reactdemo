@@ -49,6 +49,7 @@ const validateEmail = (email) => {
     if(data&& data.EC===0){
         toast.success('create user success!')
         handleClose();
+        await props.fetchListUser();
     }
     if(data&& data.EC!==0){
         toast.error(data.EM)
