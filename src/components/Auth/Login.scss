@@ -1,8 +1,21 @@
 .login-container{
     gap: 10px;
+    .btn-signup{
+        border: solid 1px #ccc;
+        border-radius: 5px;
+        margin-right: 5px;
+        &:hover{
+            cursor: pointer;
+            background-color: #ddd;
+        }
+    }
     .header{
         height: 25px;
         padding: 20px 0;
+        p{
+            margin-top: 5px;
+        }
+        
     }
     .title{
         height: 45px;
@@ -23,7 +36,12 @@
         .forgot{
             margin-bottom: 15px ;
         }
+        .back{
+            cursor: pointer;
+            margin-top: 15px !important;
+        }
         .btn-submit{
+            margin-bottom: 15px ;
             margin-top: 15px ;
         }
     }

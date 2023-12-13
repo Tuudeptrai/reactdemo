@@ -1,12 +1,31 @@
 import { useState } from 'react';
 import './Login.scss'
+import { useNavigate } from 'react-router-dom';
+import { postLogin } from '../../services/apiSevice';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const Login = (props) => {
-
+    const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [pass, setPass] = useState("");
 
-    const handleLogin =()=>{
+    const handleLogin = async()=>{
+        //validate
+
+        //submit apis
+        let data = await postLogin(email, pass)
+        console.log("me", data);
+        if(data && data.EC === 0){
+            toast.success(data.EM);
+            navigate('/')
+        }
+        if(data && +data.EC !==0 ){
+            toast.error(data.EM);
+        }
+    }
+    const handleSignup =()=>{
         alert("me");
     }
 
@@ -14,12 +33,17 @@ const Login = (props) => {
         <>
             <div className="login-container">
                 <div className='header  d-flex justify-content-end'>
-                    Don't have an account yet?
+                   <p>Don't have an account yet?</p> 
+                    <div className="d-grid">
+                        <button type="button" className="btn-signup btn btn-default btn-outline"
+                        onClick={()=> handleSignup()}
+                        >Signup </button>
+                    </div>
                 </div>
-                <div className='title col-4 mx-auto '>
+                <div className='title col-4 mx-auto d-flex justify-content-center'>
                     Tuu Web
                 </div>
-                <div className='welcome col-4 mx-auto'>
+                <div className='welcome col-4 mx-auto d-flex justify-content-center'>
                     Hello, who’s this?
                 </div>
                 <div className='content-form col-4 mx-auto'>
@@ -40,12 +64,12 @@ const Login = (props) => {
                         />
                     </div>
                     <span className='forgot'>Forgot your password?</span>
-                    <div class="d-grid btn-submit">
-                        <button type="button" class="btn btn-primary"
+                    <div className="d-grid btn-submit">
+                        <button type="button" className="btn btn-primary"
                         onClick={()=> handleLogin()}
                         >Login </button>
                     </div>
-                    
+                    <span className='back text-center' onClick={()=>navigate('/')}>&#60;&#60; Go to Homepage</span>
                 </div>
             </div>
         </>
