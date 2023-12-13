@@ -18,9 +18,12 @@ const putCreateNewUser = ( username, role, image, id) =>{
     data.append('userImage', image);
     return axios.put('v1/participant', data);
 }
+const delUser = ( userId) =>{
+    return axios.delete('v1/participant', {data:{id:userId}});
+}
 const getAllUser = () =>{
    
     return axios.get('v1/participant/all');
 }
 
-export {postCreateNewUser,getAllUser, putCreateNewUser}
+export {postCreateNewUser,getAllUser, putCreateNewUser,delUser}

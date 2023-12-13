@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { FaPlusSquare } from "react-icons/fa";
 
 import { ToastContainer, toast } from 'react-toastify';
-import { putCreateNewUser } from '../../../services/apiSevice';
+import { delUser } from '../../../services/apiSevice';
 import _ from 'lodash';
 
 const ModalDeleteUser=(props)=> {
@@ -16,8 +15,18 @@ const ModalDeleteUser=(props)=> {
   const handleClose = () => {
     setShow(false);
     }
-  const handleSubmitDel = () => {
-    alert("me")
+  const handleSubmitDel = async() => {
+    let data = await delUser( currentUser.id);
+    console.log(data);
+    if(data&& data.EC===0){
+        toast.success(data.EM)
+        handleClose();
+        await props.fetchListUser();
+    }
+    if(data&& data.EC!==0){
+        toast.error(data.EM)
+        handleClose();
+    }
     }
 
  
