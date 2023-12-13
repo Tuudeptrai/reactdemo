@@ -2,8 +2,9 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { FaPlusSquare } from "react-icons/fa";
-import axios from 'axios';
+
 import { ToastContainer, toast } from 'react-toastify';
+import { postCreateNewUser } from '../../../services/apiSevice';
 
 const ModalCreateUser=(props)=> {
   const {show, setShow} = props;
@@ -41,21 +42,16 @@ const validateEmail = (email) => {
         toast.error('inValid password!')
         return;
     }
-    const data = new FormData();
-    data.append('email', email);
-    data.append('password', password);
-    data.append('username', username);
-    data.append('role', role);
-    data.append('userImage', image);
+   
 
-    let res = await axios.post('http://localhost:8081/api/v1/participant', data);
-    console.log(res);
-    if(res.data&& res.data.EC===0){
+    let data = await postCreateNewUser(email, password, username, role, image);
+    console.log(data);
+    if(data&& data.EC===0){
         toast.success('create user success!')
         handleClose();
     }
-    if(res.data&& res.data.EC!==0){
-        toast.error(res.data.EM)
+    if(data&& data.EC!==0){
+        toast.error(data.EM)
         handleClose();
     }
   
