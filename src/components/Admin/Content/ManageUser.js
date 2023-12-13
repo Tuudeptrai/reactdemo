@@ -6,23 +6,27 @@ import TableUser from "./TableUser";
 import { getAllUser } from "../../../services/apiSevice"; 
 import ModalUpdateUser from "./ModalUpdateUser";
 import ModalViewImage from "./ModalViewImage";
+import ModalDeleteUser from "./ModalDeleteUser";
 
 const ManageUser = (props) => {
     const [showAddnew, setShowAddnew] = useState(false);
     const [showUpdateUser, setShowUpdateUser] = useState(false); 
-    const [showViewUser, setShowUpViewUser] = useState(false); 
+    const [showViewUser, setShowViewUser] = useState(false); 
+    const [showDelUser, setShowDelUser] = useState(false); 
     const [currentUser, setCurrentUser] = useState({});
 
     const [listUsers, setListUsers] = useState([]);
 
     const handleClickBtnUpdate = (user)=>{
         setShowUpdateUser(true);
-        console.log("update user:", user);
         setCurrentUser(user);
     };
     const handleClickBtnView = (user)=>{
-        setShowUpViewUser(true);
-        console.log("update user:", user);
+        setShowViewUser(true);
+        setCurrentUser(user);
+    };
+    const handleClickBtnDelUser= (user)=>{
+        setShowDelUser(true);
         setCurrentUser(user);
     };
     const fetchListUser =async()=>{
@@ -51,10 +55,20 @@ const ManageUser = (props) => {
                    </div>
                    <div className="user-table ">
                     <ModalCreateUser show={showAddnew} setShow={setShowAddnew} fetchListUser={fetchListUser} />
-                   <TableUser listUsers={listUsers} handleClickBtnUpdate={handleClickBtnUpdate} handleClickBtnView={handleClickBtnView}/>
+
+                   <TableUser listUsers={listUsers} 
+                   handleClickBtnUpdate={handleClickBtnUpdate} 
+                   handleClickBtnView={handleClickBtnView}
+                   handleClickBtnDelUser={handleClickBtnDelUser}/>
+
                    <ModalUpdateUser show={showUpdateUser} setShow={setShowUpdateUser} currentUser={currentUser} 
                    fetchListUser={fetchListUser}  resetCurrentData={resetCurrentData}/>
-                   <ModalViewImage show={showViewUser} setShow={setShowUpViewUser} resetCurrentData={resetCurrentData}  currentUser={currentUser}/>
+
+                   <ModalViewImage show={showViewUser} setShow={setShowViewUser} 
+                   resetCurrentData={resetCurrentData}  currentUser={currentUser}/>
+
+                   <ModalDeleteUser show={showDelUser} setShow={setShowDelUser} 
+                   resetCurrentData={resetCurrentData} currentUser={currentUser}/>
                    </div>
                 </div>
 

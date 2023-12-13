@@ -25,16 +25,13 @@ const ModalViewImage = (props) => {
                 <Modal.Header closeButton>
                 <Modal.Title>View avatar</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>
-                <form className="row g-3">
+                <Modal.Body style={{ height: '600px' }}>
                         
                         <div className="col-md-12 image-preview">
-                            {previewImage?<img src={previewImage} width='350px' height='100%'/>
+                            {previewImage?<img src={previewImage} width='100%' height='550px'/>
                             :<span>image-preview</span>
                         }
                         </div>
-                        
-                        </form>
                 </Modal.Body>
                 <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>
