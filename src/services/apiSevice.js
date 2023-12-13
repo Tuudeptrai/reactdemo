@@ -25,5 +25,9 @@ const getAllUser = () =>{
    
     return axios.get('v1/participant/all');
 }
+const getPaginateUser = (page,limit) =>{
+   
+    return axios.get(`v1/participant?page=${page}&limit=${limit}`);
+}
 
-export {postCreateNewUser,getAllUser, putCreateNewUser,delUser}
+export {postCreateNewUser,getAllUser, putCreateNewUser,delUser, getPaginateUser}
