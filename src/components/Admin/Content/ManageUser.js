@@ -4,12 +4,20 @@ import { FaPlusSquare } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import TableUser from "./TableUser";
 import { getAllUser } from "../../../services/apiSevice"; 
+import ModalUpdateUser from "./ModalUpdateUser";
 
 const ManageUser = (props) => {
     const [showAddnew, setShowAddnew] = useState(false);
+    const [showUpdateUser, setShowUpdateUser] = useState(false);
+    const [currentUser, setCurrentUser] = useState({});
 
     const [listUsers, setListUsers] = useState([]);
 
+    const handleClickBtnUpdate = (user)=>{
+        setShowUpdateUser(true);
+        console.log("update user:", user);
+        setCurrentUser(user);
+    };
     const fetchListUser =async()=>{
         let res = await getAllUser();
         // console.log(res)
@@ -33,7 +41,8 @@ const ManageUser = (props) => {
                    </div>
                    <div className="user-table ">
                     <ModalCreateUser show={showAddnew} setShow={setShowAddnew} fetchListUser={fetchListUser} />
-                   <TableUser listUsers={listUsers}/>
+                   <TableUser listUsers={listUsers} handleClickBtnUpdate={handleClickBtnUpdate}/>
+                   <ModalUpdateUser show={showUpdateUser} setShow={setShowUpdateUser} currentUser={currentUser} />
                    </div>
                 </div>
 
