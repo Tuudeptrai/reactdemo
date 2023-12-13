@@ -12,7 +12,7 @@ import {
 import { FaTachometerAlt, FaGem, FaFacebook ,  FaReact  } from 'react-icons/fa';
 import sidebarBg from '../../assets/bg2.jpg';
 import './SideBar.scss'
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 const SideBar = (props) => {
     const {  collapsed, toggled, handleToggleSidebar } = props;
@@ -38,7 +38,7 @@ const SideBar = (props) => {
                             whiteSpace: 'nowrap',
                         }}
                     >
-                       <FaReact size={'3em'} color='00bfff'/> Admin Tuu Web
+                      <NavLink  to="/"> <FaReact size={'3em'} color='00bfff'/></NavLink> Admin Tuu Web
                     </div>
                 </SidebarHeader>
 

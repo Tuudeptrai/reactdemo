@@ -66,7 +66,8 @@ const ManageUser = (props) => {
                     <button className="btn btn-primary" onClick={()=>setShowAddnew(true)}><FaPlusSquare />Add new user</button>  
                    </div>
                    <div className="user-table ">
-                    <ModalCreateUser show={showAddnew} setShow={setShowAddnew} fetchListUser={fetchListUserPaginate}
+                    <ModalCreateUser show={showAddnew} setShow={setShowAddnew} 
+                    fetchListUser={fetchListUserPaginate}
                      pageCount={pageCount}
                      currentPage={currentPage}
                      setCurrentPage={setCurrentPage}
@@ -92,9 +93,10 @@ const ManageUser = (props) => {
                    resetCurrentData={resetCurrentData}  currentUser={currentUser}/>
 
                    <ModalDeleteUser show={showDelUser} setShow={setShowDelUser} 
-                    currentPage={currentPage}
+                   fetchListUser={fetchListUserPaginate}
+                   currentPage={currentPage}
                    setCurrentPage={setCurrentPage}
-                   resetCurrentData={resetCurrentData} fetchListUser={fetchListUserPaginate} currentUser={currentUser}/>
+                   resetCurrentData={resetCurrentData}  currentUser={currentUser}/>
                    </div>
                 </div>
 

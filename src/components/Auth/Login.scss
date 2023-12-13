@@ -1,0 +1,30 @@
+.login-container{
+    gap: 10px;
+    .header{
+        height: 25px;
+        padding: 20px 0;
+    }
+    .title{
+        height: 45px;
+        font-size: 45px;
+        padding: 20px 0;
+        margin: 10px;
+    }
+    .welcome{
+        margin: 30px;
+        font-size: 20px;
+        padding: 10px 0;
+    }
+   
+    .content-form {
+        input{
+            margin-bottom: 15px ;
+        }
+        .forgot{
+            margin-bottom: 15px ;
+        }
+        .btn-submit{
+            margin-top: 15px ;
+        }
+    }
+}
