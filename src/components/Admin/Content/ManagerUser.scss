@@ -1,6 +1,16 @@
 .manage-user-container{
     .users-content{
-      
+        
+      .btn-add-new{
+        gap: 5px;
+        display: flex;
+       margin: 15px 0px;
+       padding: 3px 10px;
+      }
+    }
+    .title{
+        font-weight: 600;
+        font-size: 45px;
     }
 }
 .Modal-add-user{

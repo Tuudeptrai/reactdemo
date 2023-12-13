@@ -2,9 +2,11 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { FaPlusSquare } from "react-icons/fa";
+import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
 
-const ModalCreateUser=()=> {
-  const [show, setShow] = useState(false);
+const ModalCreateUser=(props)=> {
+  const {show, setShow} = props;
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -14,7 +16,6 @@ const ModalCreateUser=()=> {
   const [role, setRole] = useState('USER');
 
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
   const handleUpload = (event)=>{
     if(event.target&& event.target.files&&event.target.files[0]){
         setPreviewImage(URL.createObjectURL(event.target.files[0]))
@@ -22,14 +23,48 @@ const ModalCreateUser=()=> {
     }else{
         // setPreviewImage('')
     }
-    
-    // console.log('upload', event.target.files[0]);
     }
+const validateEmail = (email) => {
+        return String(email)
+          .toLowerCase()
+          .match(
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+          );
+      };
+  const handleSubmitAddUser =async ()=>{
+    const isValidEmail = validateEmail(email);
+    if(!isValidEmail){
+        toast.error('inValid Email!')
+        return;
+    }
+    if(!password){
+        toast.error('inValid password!')
+        return;
+    }
+    const data = new FormData();
+    data.append('email', email);
+    data.append('password', password);
+    data.append('username', username);
+    data.append('role', role);
+    data.append('userImage', image);
+
+    let res = await axios.post('http://localhost:8081/api/v1/participant', data);
+    console.log(res);
+    if(res.data&& res.data.EC===0){
+        toast.success('create user success!')
+        handleClose();
+    }
+    if(res.data&& res.data.EC!==0){
+        toast.error(res.data.EM)
+        handleClose();
+    }
+  
+  }
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
+      {/* <Button variant="primary" onClick={handleShow}>
         Launch demo modal
-      </Button>
+      </Button> */}
 
       <Modal show={show} onHide={handleClose} size='xl' backdrop="static" className='Modal-add-user'>
         <Modal.Header closeButton>
@@ -73,7 +108,7 @@ const ModalCreateUser=()=> {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={handleSubmitAddUser}>
             Save
           </Button>
         </Modal.Footer>

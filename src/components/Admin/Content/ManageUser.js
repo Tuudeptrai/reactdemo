@@ -1,7 +1,10 @@
 import ModalCreateUser from "./ModalCreateUser";
 import './ManagerUser.scss';
+import { FaPlusSquare } from "react-icons/fa";
+import { useState } from "react";
 
 const ManageUser = (props) => {
+    const [showAddnew, setShowAddnew] = useState(false);;
     return (
         <>
             <div className="manage-user-container" >
@@ -9,11 +12,11 @@ const ManageUser = (props) => {
                     Manage User
                 </div>
                 <div className="users-content">
-                   <div>
-                    <button>Add new user</button>  
+                   <div className="btn-add-new">
+                    <button className="btn btn-primary" onClick={()=>setShowAddnew(true)}><FaPlusSquare />Add new user</button>  
                    </div>
-                   <div>
-                    <ModalCreateUser/>
+                   <div className="user-table">
+                    <ModalCreateUser show={showAddnew} setShow={setShowAddnew} />
                    </div>
                 </div>
 
