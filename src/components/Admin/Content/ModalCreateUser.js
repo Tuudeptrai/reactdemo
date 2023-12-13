@@ -16,7 +16,15 @@ const ModalCreateUser=(props)=> {
   const [previewImage, setPreviewImage] = useState('');
   const [role, setRole] = useState('USER');
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false);
+    setEmail(''); 
+    setPassword(''); 
+    setUsername(''); 
+    setRole('USER'); 
+    setImage(''); 
+    setPreviewImage(''); 
+    }
   const handleUpload = (event)=>{
     if(event.target&& event.target.files&&event.target.files[0]){
         setPreviewImage(URL.createObjectURL(event.target.files[0]))
@@ -33,6 +41,7 @@ const validateEmail = (email) => {
           );
       };
   const handleSubmitAddUser =async ()=>{
+
     const isValidEmail = validateEmail(email);
     if(!isValidEmail){
         toast.error('inValid Email!')
@@ -49,7 +58,8 @@ const validateEmail = (email) => {
     if(data&& data.EC===0){
         toast.success('create user success!')
         handleClose();
-        await props.fetchListUser();
+        props.setCurrentPage(1);
+        await props.fetchListUser(1);
     }
     if(data&& data.EC!==0){
         toast.error(data.EM)
