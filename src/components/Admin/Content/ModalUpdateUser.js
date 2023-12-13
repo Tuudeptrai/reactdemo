@@ -22,17 +22,25 @@ const ModalUpdateUser=(props)=> {
       setEmail(currentUser.email);
       setPassword(currentUser.password);
       setUsername(currentUser.username);
-      setImage("");
+      // setImage("");
       if(currentUser.image){
         setPreviewImage(`data:image/jpeg;base64,${currentUser.image}`);
       }
-     
       setRole(currentUser.role);
     }
    
   },[currentUser]);
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false);
+    setEmail(''); 
+    setPassword(''); 
+    setUsername(''); 
+    setRole('USER'); 
+    setImage(''); 
+    setPreviewImage(''); 
+    props.resetCurrentData();
+    }
   const handleUpload = (event)=>{
     if(event.target&& event.target.files&&event.target.files[0]){
         setPreviewImage(URL.createObjectURL(event.target.files[0]))

@@ -25,6 +25,9 @@ const ManageUser = (props) => {
             setListUsers(res.DT)
         }
     }
+    const resetCurrentData =()=>{
+        setCurrentUser('');
+    }
     useEffect(()=>{
         fetchListUser();
     },[]);
@@ -42,7 +45,8 @@ const ManageUser = (props) => {
                    <div className="user-table ">
                     <ModalCreateUser show={showAddnew} setShow={setShowAddnew} fetchListUser={fetchListUser} />
                    <TableUser listUsers={listUsers} handleClickBtnUpdate={handleClickBtnUpdate}/>
-                   <ModalUpdateUser show={showUpdateUser} setShow={setShowUpdateUser} currentUser={currentUser} fetchListUser={fetchListUser} />
+                   <ModalUpdateUser show={showUpdateUser} setShow={setShowUpdateUser} currentUser={currentUser} 
+                   fetchListUser={fetchListUser}  resetCurrentData={resetCurrentData}/>
                    </div>
                 </div>
 
