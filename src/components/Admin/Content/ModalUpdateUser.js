@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { FaPlusSquare } from "react-icons/fa";
 
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 import { putCreateNewUser } from '../../../services/apiSevice';
 import _ from 'lodash';
 

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './Login.scss'
 import { useNavigate } from 'react-router-dom';
 import { postLogin } from '../../services/apiSevice';
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -26,7 +26,7 @@ const Login = (props) => {
         }
     }
     const handleSignup =()=>{
-        alert("me");
+        navigate('/signup')
     }
 
     return (

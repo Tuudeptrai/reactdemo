@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { delUser } from '../../../services/apiSevice';
 import _ from 'lodash';
 

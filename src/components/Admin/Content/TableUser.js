@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
 
 
 const TableUser = (props) => {
@@ -7,7 +5,6 @@ const TableUser = (props) => {
    
 
     const {listUsers} = props;
-    const {show, setShow} = props;
 
     return (
         <>

@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+
+
 import ReactPaginate from "react-paginate";
 
 const TableUserPaginate = (props) => {
-    const [pageCount, setPageCount] = useState(0);
     const handlePageClick = (event) => {
         props.fetchListUserPaginate(+event.selected+1);
         props.setCurrentPage(+event.selected+1)

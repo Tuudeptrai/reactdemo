@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { FaPlusSquare } from "react-icons/fa";
 
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 import { postCreateNewUser } from '../../../services/apiSevice';
 
 const ModalCreateUser=(props)=> {
@@ -104,7 +104,7 @@ const validateEmail = (email) => {
                     <input type="file" hidden id='labelUpload'  onChange={(event)=>handleUpload(event)}  />
                 </div>
                 <div className="col-md-12 image-preview">
-                    {previewImage?<img src={previewImage} width='350px' height='150px'/>
+                    {previewImage?<img src={previewImage} width='350px' alt='anh dep' height='150px'/>
                     :<span>image-preview</span>
                 }
                 </div>

@@ -2,8 +2,7 @@ import ModalCreateUser from "./ModalCreateUser";
 import './ManagerUser.scss';
 import { FaPlusSquare } from "react-icons/fa";
 import { useEffect, useState } from "react";
-import TableUser from "./TableUser";
-import { getAllUser, getPaginateUser } from "../../../services/apiSevice"; 
+import { getPaginateUser } from "../../../services/apiSevice"; 
 import ModalUpdateUser from "./ModalUpdateUser";
 import ModalViewImage from "./ModalViewImage";
 import ModalDeleteUser from "./ModalDeleteUser";
@@ -33,13 +32,7 @@ const ManageUser = (props) => {
         setShowDelUser(true);
         setCurrentUser(user);
     };
-    const fetchListUser =async()=>{
-        let res = await getAllUser();
-        // console.log(res)
-        if(res.EC ===0){
-            setListUsers(res.DT)
-        }
-    }
+
     const fetchListUserPaginate =async(page)=>{
         let res = await getPaginateUser(page,LIMITUSER);
         console.log("res",res)
