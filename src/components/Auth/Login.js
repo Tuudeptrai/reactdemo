@@ -4,13 +4,14 @@ import { useNavigate } from 'react-router-dom';
 import { postLogin } from '../../services/apiSevice';
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { useDispatch } from 'react-redux';
+import { doLogin } from '../../redux/action/userAction';
 
 const Login = (props) => {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [pass, setPass] = useState("");
-
+    const dispatch = useDispatch();
     const handleLogin = async()=>{
         //validate
 
@@ -19,6 +20,7 @@ const Login = (props) => {
         console.log("me", data);
         if(data && data.EC === 0){
             toast.success(data.EM);
+            dispatch(doLogin(data))
             navigate('/')
         }
         if(data && +data.EC !==0 ){
