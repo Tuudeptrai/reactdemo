@@ -6,25 +6,31 @@ import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from 'react-redux';
 import { doLogin } from '../../redux/action/userAction';
+import { ImSpinner3 } from "react-icons/im";
 
 const Login = (props) => {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [pass, setPass] = useState("");
     const dispatch = useDispatch();
+
+    const [isLoading, setIsLoading] = useState(false);
+
     const handleLogin = async()=>{
         //validate
-
+        setIsLoading(true)
         //submit apis
         let data = await postLogin(email, pass)
         console.log("me", data);
         if(data && data.EC === 0){
             toast.success(data.EM);
+            setIsLoading(false);
             dispatch(doLogin(data))
             navigate('/')
         }
         if(data && +data.EC !==0 ){
             toast.error(data.EM);
+            setIsLoading(false);
         }
     }
     const handleSignup =()=>{
@@ -69,7 +75,8 @@ const Login = (props) => {
                     <div className="d-grid btn-submit">
                         <button type="button" className="btn btn-primary"
                         onClick={()=> handleLogin()}
-                        >Login </button>
+                        disabled={isLoading}
+                        >{isLoading==true&&<ImSpinner3 className='loaderIcon' />} Login</button>
                     </div>
                     <span className='back text-center' onClick={()=>navigate('/')}>&#60;&#60; Go to Homepage</span>
                 </div>

@@ -30,7 +30,7 @@ const getPaginateUser = (page,limit) =>{
     return axios.get(`v1/participant?page=${page}&limit=${limit}`);
 }
 const postLogin = (email,password) =>{
-    return axios.post(`v1/login`,{email,password});
+    return axios.post(`v1/login`,{email,password, delay:3000});
 }
 const postRegisterUser = (email, password, username) =>{
     return axios.post(`v1/register`,{email,password,username});
