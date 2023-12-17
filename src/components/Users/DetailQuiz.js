@@ -1,18 +1,35 @@
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams,useLocation } from 'react-router-dom';
 import { getQuizData } from '../../services/apiSevice';
 import _ from 'lodash';
 import './DetailQuiz.scss';
+import Question from './Question';
 
 const DetailQuiz = (props) => {
     const params = useParams();
     const quizId = params.id;
     const {state} = useLocation();
+    const [dataQuiz,setDataQuiz] = useState([]);
+    const [index,setIndex] = useState(0);
+
     useEffect(()=>{
         fetchQuestion();
+        
     },[quizId]);
-
+    const handleBack= ()=>{
+        if(index-1>=0){
+            setIndex(index-1);
+        }
+        
+    }
+    console.log('dataQuiz.answers', dataQuiz.length);
+    const handleNext= ()=>{
+       
+        if(dataQuiz && index+1< dataQuiz.length )
+            setIndex(index+1);
+       
+    }
     const fetchQuestion = async()=>{
         const res= await getQuizData(quizId);
        
@@ -32,7 +49,9 @@ const DetailQuiz = (props) => {
                  return {questionld: key, answers, questionDescription, image } 
             })
             .value()
-            console.log('raw',raw );
+            
+            setDataQuiz(raw);
+            console.log('>>>dataQuiz',dataQuiz );
         }
     }
     console.log('state bypass', state.title );
@@ -45,28 +64,13 @@ const DetailQuiz = (props) => {
                             <div className="q-title">
                                 <p>Quiz {state?.id}: {state?.title}</p>
                             </div>
-                            <div className="q-body">
-                                <img src="https://www.anhngumshoa.com/uploads/images/resize/550x550/test/11.jpg" alt="anhminhhoa"/>
-                            </div>
+                            
                             <div className="q-content">
-                               <div className="question">
-                                 Question 1: Who R U?
-                               </div>
-                               <div className="anwser">
-                                 <div className="a-1">
-                                   a. đjdjdjd
-                                 </div>
-                                 <div className="a-2">
-                                   b. ssjdjhdhjd
-                                 </div>
-                                 <div className="a-3">
-                                   c.djhhhffh
-                                 </div>
-                               </div>
+                              <Question index={index} data={dataQuiz&&dataQuiz.length>0?dataQuiz[index]:[]}/>
                             </div>
                             <div className="footer d-flex justify-content-center">
-                              <button className='btn btn-primary mx-3'>Back</button>
-                              <button className='btn btn-primary mx-3'>Next</button>
+                              <button onClick={()=>{handleBack()} } className='btn btn-primary mx-3'>Back</button>
+                              <button onClick={()=>{handleNext()} } className='btn btn-primary mx-3'>Next</button>
                             </div>
                         </div>
                     
