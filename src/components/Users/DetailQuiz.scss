@@ -1,0 +1,25 @@
+.left-content{
+    border: solid 1px green;
+}
+.right-content{
+    border: solid 1px red !important;
+    &:hover{
+        background-color: white !important;
+    }
+}
+.q-content{
+    .question{
+        font-size: 20px;
+        font-weight: 600;
+    }
+}
+.q-title{
+    p{
+        font-size: 30px;
+        font-weight: 600;
+       
+    }
+}
+.detail-quiz-container{
+    padding: 50px;
+}
