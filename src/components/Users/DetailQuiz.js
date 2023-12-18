@@ -23,13 +23,34 @@ const DetailQuiz = (props) => {
         }
         
     }
-    console.log('dataQuiz.answers', dataQuiz.length);
+    console.log('dataQuiz', dataQuiz);
     const handleNext= ()=>{
        
         if(dataQuiz && index+1< dataQuiz.length )
             setIndex(index+1);
        
     }
+
+    const handleCheckBox =(aId, qID)=>{
+        let dataQuizClone = _.cloneDeep(dataQuiz);
+        let q = dataQuizClone.find(item => +item.questionld === +qID)
+        if(q&&q.answers){
+           let b= q.answers.map(item=>{
+                if(+item.id===+aId){
+                    item.isSelected =! item.isSelected;
+                 }
+                 return item;
+            })
+            q.answers=b;
+            // console.log('>>>', b)
+        }
+        let index = dataQuizClone.findIndex(item =>+item.questionld ===+qID)
+        if(index >-1){
+            dataQuizClone[index] =q;
+            setDataQuiz(dataQuizClone);
+        }
+    } 
+
     const fetchQuestion = async()=>{
         const res= await getQuizData(quizId);
        
@@ -43,6 +64,7 @@ const DetailQuiz = (props) => {
                         questionDescription = item.description;
                         image = item.image;
                     }
+                    item.answers.isSelected = false;
                     answers. push(item.answers);
                        
                  })
@@ -60,22 +82,25 @@ const DetailQuiz = (props) => {
           <div className="detail-quiz-container container">
                 <div className="row">
                    
-                        <div className="left-content col-md-8">
+                        <div className="left-content card col-md-7">
                             <div className="q-title">
                                 <p>Quiz {state?.id}: {state?.title}</p>
                             </div>
-                            
+                            <hr/>
                             <div className="q-content">
-                              <Question index={index} data={dataQuiz&&dataQuiz.length>0?dataQuiz[index]:[]}/>
+                              <Question 
+                              handleCheckBox={handleCheckBox}
+                              index={index} data={dataQuiz&&dataQuiz.length>0?dataQuiz[index]:[]}/>
                             </div>
                             <div className="footer d-flex justify-content-center">
-                              <button onClick={()=>{handleBack()} } className='btn btn-primary mx-3'>Back</button>
+                              <button onClick={()=>{handleBack()} } className='btn btn-secondary mx-3'>Back</button>
                               <button onClick={()=>{handleNext()} } className='btn btn-primary mx-3'>Next</button>
+                              <button onClick={()=>{handleNext()} } className='btn btn-warning mx-3'>Fisnish</button>
                             </div>
                         </div>
                     
                 
-                        <div className="right-content col-md-4">
+                        <div className="right-content card col-md-3">
                             <p>count down</p>
                         </div>
                   
