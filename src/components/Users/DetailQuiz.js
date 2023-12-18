@@ -23,7 +23,7 @@ const DetailQuiz = (props) => {
         }
         
     }
-    console.log('dataQuiz', dataQuiz);
+    // console.log('dataQuiz', dataQuiz);
     const handleNext= ()=>{
        
         if(dataQuiz && index+1< dataQuiz.length )
@@ -50,7 +50,33 @@ const DetailQuiz = (props) => {
             setDataQuiz(dataQuizClone);
         }
     } 
+    const handleFisnish =()=>{
+        console.log('check data before submit',dataQuiz );
+        let payload ={
+            quizId: +quizId,
+            answers: [ ]
+        }
+        let answers = [];
+        if(dataQuiz&&dataQuiz.length>0){
+            dataQuiz.forEach((question)=>{
+                let questionId=  question.questionId;
+                let userAnswerId=  [];
+                question.answers.forEach((item)=>{
+                    if (item.isSelected===true){
+                        userAnswerId.push(item.id)
+                    }
+                })
+                
+                answers.push({
+                    questionId:questionId,
+                    userAnswerId:userAnswerId
+                })
 
+            })
+            payload.answers = answers;
+            console.log('payload',payload );
+        }
+    }
     const fetchQuestion = async()=>{
         const res= await getQuizData(quizId);
        
@@ -73,10 +99,10 @@ const DetailQuiz = (props) => {
             .value()
             
             setDataQuiz(raw);
-            console.log('>>>dataQuiz',dataQuiz );
+            // console.log('>>>dataQuiz',dataQuiz );
         }
     }
-    console.log('state bypass', state.title );
+    // console.log('state bypass', state.title );
     return (
         <>
           <div className="detail-quiz-container container">
@@ -95,7 +121,7 @@ const DetailQuiz = (props) => {
                             <div className="footer d-flex justify-content-center">
                               <button onClick={()=>{handleBack()} } className='btn btn-secondary mx-3'>Back</button>
                               <button onClick={()=>{handleNext()} } className='btn btn-primary mx-3'>Next</button>
-                              <button onClick={()=>{handleNext()} } className='btn btn-warning mx-3'>Fisnish</button>
+                              <button onClick={()=>{handleFisnish()} } className='btn btn-warning mx-3'>Fisnish</button>
                             </div>
                         </div>
                     
@@ -104,8 +130,8 @@ const DetailQuiz = (props) => {
                             <p>count down</p>
                         </div>
                   
-                </div>
-</div>
+                    </div>
+            </div>
 
 
         </>

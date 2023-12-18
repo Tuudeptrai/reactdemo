@@ -10,7 +10,7 @@ const Question = (props) => {
         )
     }
     const handleChildCheckBox = (event, aId,qId)=>{
-        console.log('check',event.target.checked ,"id",aId,qId);
+        // console.log('check',event.target.checked ,"id",aId,qId);
         props.handleCheckBox(aId,qId);
     }
     return (
