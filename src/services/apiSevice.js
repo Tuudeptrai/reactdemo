@@ -35,6 +35,11 @@ const postLogin = (email,password) =>{
 const postRegisterUser = (email, password, username) =>{
     return axios.post(`v1/register`,{email,password,username});
 }
+const postSubmitQuiz = (data) =>{
+    console.log('...data',{...data} );
+    return axios.post(`v1/quiz-submit`,{...data});
+   
+}
 const getQuizByUser = () =>{
    
     return axios.get('v1/quiz-by-participant');
@@ -45,5 +50,5 @@ const getQuizData = (id) =>{
 }
 export {postCreateNewUser,getAllUser, putCreateNewUser,delUser,
      getPaginateUser,postLogin, postRegisterUser,getQuizByUser,
-     getQuizData
+     getQuizData,postSubmitQuiz
     }
